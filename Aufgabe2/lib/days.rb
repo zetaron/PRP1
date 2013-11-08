@@ -1,7 +1,7 @@
 $LOAD_PATH.unshift File.join(File.dirname(__FILE__),'../..','extensions/lib')
 require 'ext_pr1_v4'
 
-DaySym = [
+DAY_SYM_SEQ = [
   :MO,
   :DI,
   :MI,
@@ -20,7 +20,7 @@ DaySym = [
 # )
 def day_num?(day)
   if day.int?
-    return ((day >= 1) and (day <= (DaySym.length)))
+    return ((day >= 1) and (day <= DAY_SYM_SEQ.length))
   end
 
   return false
@@ -34,7 +34,7 @@ end
 #   ('str') => false
 # )
 def day_sym?(day)
-  return DaySym.include?(day)
+  return DAY_SYM_SEQ.include?(day)
 end
 
 # day? :: Any :: (day) ->? Bool
@@ -63,7 +63,7 @@ def day_num_to_day_sym(day_num)
     (day_num?(day_num))
   ))
 
-  return DaySym.at(day_to_index(day_num))
+  return DAY_SYM_SEQ.at(day_to_index(day_num))
 end
 
 # day_sym_to_day_num :: Sym :: (day_sym) ->? Num
@@ -79,7 +79,7 @@ def day_sym_to_day_num(day_sym)
     (day_sym?(day_sym))
   ))
 
-  return index_to_day(DaySym.find_index(day_sym))
+  return index_to_day(DAY_SYM_SEQ.find_index(day_sym))
 end
 
 # to_day_sym :: Any :: (day) ->? Sym
@@ -155,7 +155,7 @@ def day_num_pred(day_num)
 
   day_num_pred = day_num.pred
 
-  return (day_num?(day_num_pred) ? day_num_pred : DaySym.length)
+  return (day_num?(day_num_pred) ? day_num_pred : DAY_SYM_SEQ.length)
 end
 
 # day_sym_succ :: Sym :: (day_sym) ->? Sym
@@ -170,8 +170,8 @@ def day_sym_succ(day_sym)
     (day_sym?(day_sym))
   ))
 
-  index = day_to_index(day_num_succ(index_to_day(DaySym.find_index(day_sym))))
-  return DaySym.at(index)
+  index = day_to_index(day_num_succ(index_to_day(DAY_SYM_SEQ.find_index(day_sym))))
+  return DAY_SYM_SEQ.at(index)
 end
 
 # day_sym_pred :: Sym :: (day_sym) ->? sym
@@ -186,8 +186,8 @@ def day_sym_pred(day_sym)
     (day_sym?(day_sym))
   ))
 
-  index = day_to_index(day_num_pred(index_to_day(DaySym.find_index(day_sym))))
-  return DaySym.at(index)
+  index = day_to_index(day_num_pred(index_to_day(DAY_SYM_SEQ.find_index(day_sym))))
+  return DAY_SYM_SEQ.at(index)
 end
 
 # day_succ :: Any :: (day) ->? Any
