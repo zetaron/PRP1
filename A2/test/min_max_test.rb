@@ -28,20 +28,22 @@ class MinMaxTest < Test::Unit::TestCase
   def test_min_int
     assert_equal(2,   min_int(2,4))
     assert_equal(3,   min_int(3,5))
+    assert_equal(-4,  min_int(2,-4))
+    assert_equal(-2,  min_int(-2,4))
 
     assert_raise(RT)  {min_int('string',4)}
     assert_raise(RT)  {min_int(2,'string')}
-    assert_raise(RT)  {min_int(2,-4)}
-    assert_raise(RT)  {min_int(-2,4)}
+    
   end
     
   def test_max_int
     assert_equal(4,   max_int(2,4))
     assert_equal(5,   max_int(3,5))
+    assert_equal(4,   max_int(-2,4))
+    assert_equal(2,   max_int(2,-4))
 
     assert_raise(RT)  {max_int('string',4)}
     assert_raise(RT)  {max_int(2,'string')}
-    assert_raise(RT)  {max_int(-2,4)}
-    assert_raise(RT)  {max_int(2,-4)}
+
   end
 end
